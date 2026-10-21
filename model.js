@@ -1,9 +1,9 @@
-////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Model.js
 // This file contains all the classes and their respective subclasses of the DnD 5.5e character generator
 // Teammembers that worked on this file:
 // - Andrew Smith 
-///////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /***********************************************************************
 /*Main Character Class for storing all the information about a character
@@ -39,13 +39,17 @@ export class Character{
     this.backpack = {equipment: [], money: 0, inventory: []};
   }
 }
+//The added constructors for item and its subclasses are in case we decided to also include a way for users to view their descriptions. 
+//ex: They hover their mouse over an element in charcter details and a textbox appears showing additional details of the item.
+//This is an "after MVP" feature idea
 
+//Items that the character can have in their inventories and equipement
 export class item{
     //initial constructor for item class
     constructor(name) {
         this.name = name;
     }
-    //initial constructor for item class with description for future use if needed
+    //constructor for item class with description for future use if needed
     constructor(name, description) {
         this.name = name;
         this.description = description;
@@ -60,7 +64,7 @@ export class weapons extends item{
         this.damageType = damageType;
         this.properties = properties; // e.g., ["Light", "Finesse"]
     }
-    //initial constructor for weapons class with description for future use if needed
+    //constructor for weapons class with description for future use if needed
     constructor(name, description, damage, damageType, properties) {
         super(name, description);
         this.damage = damage;
@@ -76,7 +80,7 @@ export class armor extends item{
         this.armorClass = armorClass;
         this.armorType = armorType; // e.g., "Light", "Medium", "Heavy"
     }
-    //initial constructor for armor class with description for future use if needed
+    //constructor for armor class with description for future use if needed
     constructor(name, description, armorClass, armorType) {
         super(name, description);
         this.armorClass = armorClass;
