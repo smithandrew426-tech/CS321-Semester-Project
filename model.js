@@ -10,7 +10,16 @@
 /**********************************************************************/
 export class Character{
   constructor(name) {
-    this.name = "";
+
+    this.name = name;
+    this.HP = 0;
+    this.class = {
+      className: "",          // e.g., "Fighter"
+      level: 1,
+      hitDice: "",            // e.g., "1d10"
+      classFeatures: []
+        };
+
     this.origin = {
             race: {
                 name: "",
@@ -28,11 +37,24 @@ export class Character{
                 abilityScoreIncrease: {strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0}
             },
         };
+
+    // Combat & Vitals
+    this.hp = { max: 0, current: 0 };
+    this.armorClass = 10;      // Base AC calculated later from armor + dex
+    this.proficiencyBonus = 2; // Level 1 default
+    
+
+    this.AbilityScores = {strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0};
+    this.savingThrowProficiencies = [];
+    this.weaponMasteries = [];
+    this.languages = [];
+
     this.spellsAndCantrips = {
             cantrips: [], // e.g., ["Light", "Mage Hand"]
             spells: [] // e.g., ["Fireball", "Mage Armor"]
         }
-    this.AbilityScores = {strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0};
+    
+    
     this.traits = [];
     this.feats = [];
     this.physDetails = {height: 0, size: 0, age: 0, lifespan: 0, gender: ""};
@@ -40,45 +62,25 @@ export class Character{
   }
 }
 
-export class item{
-    //initial constructor for item class
+export class item {
     constructor(name) {
         this.name = name;
-    }
-    //initial constructor for item class with description for future use if needed
-    constructor(name, description) {
-        this.name = name;
-        this.description = description;
+        this.description = "";
     }
 }
 
-export class weapons extends item{
-    //initial constructor for weapons class
+export class weapons extends item {
     constructor(name, damage, damageType, properties) {
         super(name);
         this.damage = damage;
         this.damageType = damageType;
         this.properties = properties; // e.g., ["Light", "Finesse"]
     }
-    //initial constructor for weapons class with description for future use if needed
-    constructor(name, description, damage, damageType, properties) {
-        super(name, description);
-        this.damage = damage;
-        this.damageType = damageType;
-        this.properties = properties; // e.g., ["Light", "Finesse"]
-    }
 }
 
-export class armor extends item{
-    //initial constructor for armor class
+export class armor extends item {
     constructor(name, armorClass, armorType) {
         super(name);
-        this.armorClass = armorClass;
-        this.armorType = armorType; // e.g., "Light", "Medium", "Heavy"
-    }
-    //initial constructor for armor class with description for future use if needed
-    constructor(name, description, armorClass, armorType) {
-        super(name, description);
         this.armorClass = armorClass;
         this.armorType = armorType; // e.g., "Light", "Medium", "Heavy"
     }
