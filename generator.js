@@ -73,14 +73,6 @@ function generateHeight(modelSpecies) {
 }
 
 function generateAbilityScores(modelClass, modelAbilityScores) {
-    const stats = {
-        strength: -1,
-        dexterity: -1,
-        constitution: -1,
-        intelligence: -1,
-        wisdom: -1,
-        charisma: -1
-    };
 
     const scores = new Array(6);
     for(let i = 0; i < scores.length; i++) {
@@ -95,11 +87,35 @@ function generateAbilityScores(modelClass, modelAbilityScores) {
         }
     }
     
-    for(let i = 0; i < scores.length; i++) {
+    let primaryStat = primaryStats[modelClass.toLowerCase()].toLowerCase();
+    modelAbilityScores[primaryStat] = maxScore;
 
+    let i = 0;
+    while(checkAbilityScoresInitilized(modelAbilityScores) == false) {
+        let randomStat = chooseRandomStatHelper();
+        if(modelAbilityScores[randomStat] == 0 && i != maxIndex) {
+            modelAbilityScores[randomStat] = scores[i];
+        }
+        i++;
     }
 
-    return stats;
+}
+
+function checkAbilityScoresInitilized(modelAbilityScores) {
+    let stats = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
+    for(let i = 0; i < stats.length; i++) {
+        if(modelAbilityScores[stats[i]] <= 0) {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+function chooseRandomStatHelper() {
+    let stats = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
+    let chosenStat = stats[Math.floor(Math.random() * stats.length)];
+    return chosenStat;
 }
 
 function abilityScoreHelper() {
