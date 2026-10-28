@@ -91,7 +91,7 @@ function generateAbilityScores(modelClass, modelAbilityScores) {
     modelAbilityScores[primaryStat] = maxScore;
 
     let i = 0;
-    while(checkAbilityScoresInitilized(modelAbilityScores) == false) {
+    while(checkAbilityScoresInitilized(modelAbilityScores) == false && i < scores.length) {
         let randomStat = chooseRandomStatHelper();
         if(modelAbilityScores[randomStat] == 0 && i != maxIndex) {
             modelAbilityScores[randomStat] = scores[i];
