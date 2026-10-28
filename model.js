@@ -39,7 +39,6 @@ export class Character{
         };
 
     // Combat & Vitals
-    this.hp = { max: 0, current: 0 };
     this.armorClass = 10;      // Base AC calculated later from armor + dex
     this.proficiencyBonus = 2; // Level 1 default
     
