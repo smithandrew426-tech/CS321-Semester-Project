@@ -1,9 +1,9 @@
-////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Model.js
 // This file contains all the classes and their respective subclasses of the DnD 5.5e character generator
 // Teammembers that worked on this file:
 // - Andrew Smith 
-///////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /***********************************************************************
 /*Main Character Class for storing all the information about a character
@@ -61,6 +61,9 @@ export class Character{
     this.backpack = {equipment: [], money: 0, inventory: []};
   }
 }
+//The added constructors for item and its subclasses are in case we decided to also include a way for users to view their descriptions. 
+//ex: They hover their mouse over an element in charcter details and a textbox appears showing additional details of the item.
+//This is an "after MVP" feature idea
 
 export class item {
     constructor(name) {
