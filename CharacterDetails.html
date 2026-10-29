@@ -1,0 +1,129 @@
+<!--
+    CharacerDetails.html
+    This file contains the fully loaded character details after the generator runs its course.
+    It will display all of the necessary information required such as race, origin, equipment, and more.
+
+    Teammembers that worked on this file:
+    - Ivory Jemmott
+-->
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>DnD Character Generator Results</title>
+
+        <!-- Linking to the CSS file that'll contain all the style changes. -->
+         <!-- As of right now, it provides a layout but it will change in future development -->
+        <link rel="stylesheet" href="detailsStyle.css">
+    </head>
+
+    <body>
+
+        <div class="container">
+            <header> 
+                <h1 style="text-align: center;"> Your Character's Details </h1> 
+            </header>
+
+            <div id="content">
+
+                <div id="left">
+                    <h3 style="text-align: center;"> Character Origins </h3>
+
+                    This will contain either images or the main details like class, race, background, etc.
+                    <br> This layout will use a list as an example
+
+                    <ul>
+                        <li> Class: </li>
+                        <li> Race: </li>
+                        <li> Background: </li>
+                        <li> Subrace: </li>
+                        <li> Lifespan: </li>
+                        <li> Height: </li>
+                    </ul>
+                </div>
+
+
+                <main> 
+                    <h3 style="text-align: center;"> Character File </h3>
+
+                    This will contain possibly the additional character details. 
+                    How the generator displays everything we can workshop
+
+                    <ul>
+                        <li> It can also be an unordered list </li>
+                    </ul>
+                    
+                    
+                </main>
+            </div>
+
+            <footer style="text-align: center;">
+                <h3> Export Options: </h3>
+                <button id="copyClipboard" type="button"> Copy to Clipboard </button>
+                <button id="copyJSON" type="button"> Copy to JSON </button>
+                <button id="generateAgain" type="button"> Generate Again </button>
+            </footer>
+
+    </body>
+
+    <script type="module">
+
+        // Wait until the HTML structure is completely loaded by the browser
+        document.addEventListener("DOMContentLoaded", () => {
+        // Retrieve the generated character from local storage
+        const generatedCharacter = JSON.parse(localStorage.getItem("generatedCharacter"));
+
+        if (generatedCharacter) {
+            const character = generatedCharacter;
+            console.log(character); // Your character object is back!
+        }
+        // Populate the character details in the HTML
+        if (generatedCharacter) {
+            // Populate the left section with character details
+            document.querySelector("#left ul li:nth-child(1)").textContent = `Class: ${generatedCharacter.class.className}`;// Populate the class detail
+            document.querySelector("#left ul li:nth-child(2)").textContent = `Race: ${generatedCharacter.origin.race.name}`;// Populate the race detail
+            document.querySelector("#left ul li:nth-child(3)").textContent = `Background: ${generatedCharacter.origin.background.name}`;// Populate the background detail
+            document.querySelector("#left ul li:nth-child(4)").textContent = `Subrace: ${generatedCharacter.origin.race.subrace || "N/A"}`;// Populate the subrace detail
+            document.querySelector("#left ul li:nth-child(5)").textContent = `Lifespan: ${generatedCharacter.physDetails.age}`;// Populate the lifespan detail
+            document.querySelector("#left ul li:nth-child(6)").textContent = `Height: ${generatedCharacter.physDetails.height}`;// Populate the height detail
+        } else{
+            console.error("No character data found in localStorage!");
+        }
+        // Add event listeners for the export buttons
+        document.querySelector("#copyClipboard").addEventListener("click", () => {
+            if (generatedCharacter) {
+                // Copy the character JSON to the clipboard using the Clipboard API
+                navigator.clipboard.writeText(JSON.stringify(generatedCharacter)).then(() => {
+                    alert("Character copied to clipboard!");
+                }).catch(err => { // Handle any errors that occur while copying to the clipboard
+                    console.error("Failed to copy character: ", err);
+                });
+            } else {
+                alert("No character data found to copy!");
+            }
+        });
+
+        document.querySelector("#copyJSON").addEventListener("click", () => {
+            if (generatedCharacter) {
+                //Blob a special data type used to represent raw, unformatted binary data as a single entity
+                //Here we create a new Blob containing the JSON string of the character, then create a temporary URL for it, and trigger a download.
+                const blob = new Blob([JSON.stringify(generatedCharacter)], { type: "application/json" });// Create a new Blob containing the JSON string of the character
+                const url = URL.createObjectURL(blob);// Create a temporary URL for the Blob
+                const a = document.createElement("a");
+                a.href = url;
+                a.download = "character.json";
+                a.click();
+                URL.revokeObjectURL(url);// Clean up the temporary URL after triggering the download
+            } else {
+                alert("No character data found to export!");
+            }
+        });
+
+        document.querySelector("#generateAgain").addEventListener("click", () => {// Redirect to the loading page to generate a new character
+            window.location.href = "Loading.html";
+        });
+    });
+    </script>
+
+</html>

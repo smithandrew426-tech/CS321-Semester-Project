@@ -1,0 +1,49 @@
+<!--
+    Loading.html
+    This file contains the loading function for the DnD 5.5e character Generator.
+
+    Teammembers that worked on this file:
+    - Ivory Jemmott
+-->
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+    </head>
+    
+    <style>
+        /* Making the loading screen background gray, this can change overtime */
+        body{
+            background-color: gray;
+        }
+
+        /* Loading screen function and creation, making the animation */
+        .loader{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            transform: translate(-50%, -50%);
+
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            
+            animation: loading 2s linear infinite;
+            z-index: 9999;
+
+        }
+
+        @keyframes loading{
+            0% { transform: translate(-50%, -50%) rotate(0deg)}
+            100% {transform: translate(-50%, -50%) rotate(360deg);}
+        }
+        
+    </style>
+    <script type="module" src="generator.js"></script>
+
+    <div class="loader"></div>
+
+</html>

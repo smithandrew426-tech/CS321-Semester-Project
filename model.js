@@ -71,7 +71,7 @@ export class item {
     }
 }
 
-export class weapons extends item {
+export class weapon extends item {
     constructor(name, damage, damageType, properties) {
         super(name);
         this.damage = damage;
