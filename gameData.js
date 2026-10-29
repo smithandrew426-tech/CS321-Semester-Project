@@ -1,6 +1,8 @@
 // gameData.js - all the static DnD stuff the generator pulls from
 // note: object keys are lowercase so use .toLowerCase() when looking things up
-
+// This file contains all the static data for the DnD character generator, such as classes, species, backgrounds, and more.
+// Teammembers that worked on this file:
+// Eman, Andrew Smith, Naseem 
 const classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
 
 const species = ["Aasimar", "Dragonborn", "Dwarf", "Elf", "Gnome", "Goliath", "Halfling", "Human", "Orc", "Tiefling"];

@@ -1,3 +1,12 @@
+/*
+    CharacerDetails.html
+    This file contains the fully loaded character details after the generator runs its course.
+    It will display all of the necessary information required such as race, origin, equipment, and more.
+
+    Teammembers that worked on this file:
+    - Naseem: helper functions and main logic, Andrew Smith: character generation, integration, and page redirection
+*/
+
 import {classes as classArray, species as speciesArray, 
         backgrounds as backgroundArray, subSpecies, lifespan, 
         heightMinimum as heightMin, heightRange, primaryStats} from './gameData.js';
@@ -10,27 +19,23 @@ let classIndex = Math.floor(Math.random() * numClasses);
 
 
 if (window.location.href.includes("Loading.html")) {
-    // Only run this IF we haven't already started a countdown timer
-    if (!localStorage.getItem("loadingTimerStarted")) {
-        //creates a variable to keep track if we already started making a character to prevent infinite loading
-        localStorage.setItem("loadingTimerStarted", "true");
-
-        // Generate the character ONCE right here
-        const newCharacter = generateRandomCharacter(); 
-        
-        // Save it safely to the local webpage storage
-        localStorage.setItem("generatedCharacter", JSON.stringify(newCharacter)); 
-
-        // Wait 3 seconds, clear the timer flag, and redirect so that loading screen is displayed before showing character details
-        setTimeout(() => {
-            localStorage.removeItem("loadingTimerStarted");
-            window.location.href = "CharacterDetails.html";
-        }, 3000);
-    }
+    console.log("Loading page detected");
+    console.log("Starting loading timer and character generation");
+    const newCharacter = generateRandomCharacter();
+    console.log("Generated character:", newCharacter);
+    localStorage.setItem("generatedCharacter", JSON.stringify(newCharacter));
+    console.log("Saved generated character to localStorage");
+    // The timer is scoped to this page load so stale storage cannot block a later redirect.
+    setTimeout(() => {
+        window.location.href = "CharacterDetails.html";
+        console.log("Redirecting to CharacterDetails.html");
+    }, 3000);
 } 
 else {
+    console.log("Character details page detected");
     // We are already on the character details page, so generate a new character and store it in local storage.
     const newCharacter = generateRandomCharacter();
+    console.log("Generated character:", newCharacter);
     localStorage.setItem("generatedCharacter", JSON.stringify(newCharacter));
 }
 
@@ -142,6 +147,7 @@ function generateAbilityScores(modelClass, modelAbilityScores) {
             modelAbilityScores[randomStat] = scores[i];
         }
         i++;
+        
     }
 
     return modelAbilityScores;
