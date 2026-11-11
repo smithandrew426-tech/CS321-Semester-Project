@@ -85,7 +85,7 @@
             document.querySelector("#left ul li:nth-child(2)").textContent = `Race: ${generatedCharacter.origin.race.name}`;// Populate the race detail
             document.querySelector("#left ul li:nth-child(3)").textContent = `Background: ${generatedCharacter.origin.background.name}`;// Populate the background detail
             document.querySelector("#left ul li:nth-child(4)").textContent = `Subrace: ${generatedCharacter.origin.race.subrace || "N/A"}`;// Populate the subrace detail
-            document.querySelector("#left ul li:nth-child(5)").textContent = `Lifespan: ${generatedCharacter.physDetails.age}`;// Populate the lifespan detail
+            document.querySelector("#left ul li:nth-child(5)").textContent = `Age: ${generatedCharacter.physDetails.age}`;// Populate the age detail
             document.querySelector("#left ul li:nth-child(6)").textContent = `Height: ${generatedCharacter.physDetails.height}`;// Populate the height detail
         } else{
             console.error("No character data found in localStorage!");
