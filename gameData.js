@@ -3,12 +3,170 @@
 // This file contains all the static data for the DnD character generator, such as classes, species, backgrounds, and more.
 // Teammembers that worked on this file:
 // Eman, Andrew Smith, Naseem 
+// Names of the character classes available to the generator.
 const classes = ["Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"];
 
+// Level-one class features and the number of spells and cantrips each class receives.
+const lel1ClassFeatures = {
+
+    barbarian: {
+        classFeatures: ["Rage", "Unarmored Defense, Weapon Mastery"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 0
+    },
+    bard: {
+        classFeatures:["Bardic Inspiration", "Spellcasting"],
+        numOfCantrips: 2,
+        numOfPreparedSpells: 4
+    },
+    cleric: {
+        classFeatures: ["Spellcasting", "Divine Domain"],
+        numOfCantrips: 3,
+        numOfPreparedSpells: 4
+    },
+    druid: {
+        classFeatures: ["Druidic", "Spellcasting", "Primal Order"],
+        numOfCantrips: 3,
+        numOfPreparedSpells: 4
+        
+    },
+    fighter: {
+        classFeatures: ["Fighting Style", "Second Wind", "Weapon Mastery"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 0
+    },
+    monk: {
+        classFeatures: ["Unarmored Defense", "Martial Arts"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 0
+    },
+    paladin: {
+        classFeatures: ["Spellcasting", "Lay on Hands", "Weapon Mastery"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 2
+    },
+    ranger: {
+        classFeatures: ["Favored Enemy", "Weapon Mastery", "Spellcasting"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 2
+    },
+    rogue: {
+        classFeatures: ["Expertise", "Sneak Attack", "Thieves' Cant", "Weapon Mastery"],
+        numOfCantrips: 0,
+        numOfPreparedSpells: 0
+    },
+    sorcerer: {
+        classFeatures: ["Spellcasting", "Innate Sorcery"],
+        numOfCantrips: 4,
+        numOfPreparedSpells: 2
+    },
+    warlock: {
+        classFeatures: ["Eldritch Invocations", "Pact Magic"],
+        numOfCantrips: 2,
+        numOfPreparedSpells: 2
+    },
+    wizard: {
+        classFeatures: ["Spellcasting", "Arcane Recovery", "Ritual Adept"],
+        numOfCantrips: 3,
+        numOfPreparedSpells: 4
+    }
+};
+
+// Core class statistics and proficiencies used when building a character.
+const coreClassTraits = {
+    barbarian: {
+        hitDice: "1d12",
+        savingThrowProficiencies: ["Strength", "Constitution"],
+        skillProficiencies: ["Animal Handling", "Athletics", "Intimidation", "Nature", "Perception", "Survival"],
+        weaponProficiencies: ["Simple Weapons", "Martial Weapons"],
+        ArmorTraits: ["Light Armor", "Medium Armor", "Shields"],
+    },
+    bard: {
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Dexterity", "Charisma"],
+        skillProficiencies: ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", "Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival"],
+        weaponProficiencies: ["Simple Weapons", "Hand Crossbows", "Longswords", "Rapiers", "Shortswords"],
+        ArmorTraits: ["Light Armor"],
+    },
+    cleric: {  
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Wisdom", "Charisma"],
+        skillProficiencies: ["History", "Insight", "Medicine", "Persuasion", "Religion"],
+        weaponProficiencies: ["Simple Weapons"],
+        ArmorTraits: ["Light Armor", "Medium Armor", "Shields"],
+    },
+    druid: {
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Intelligence", "Wisdom"],
+        skillProficiencies: ["Arcana", "Animal Handling", "Insight", "Medicine", "Nature", "Perception", "Religion", "Survival"],
+        weaponProficiencies: ["Simple Weapons", "Hand Crossbows", "Longswords", "Rapiers", "Shortswords"],
+        ArmorTraits: ["Light Armor", "Medium Armor"],
+    },
+    fighter: {
+        hitDice: "1d10",
+        savingThrowProficiencies: ["Strength", "Constitution"],
+        skillProficiencies: ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
+        weaponProficiencies: ["Simple Weapons", "Martial Weapons"],
+        ArmorTraits: ["Light Armor", "Medium Armor", "Shields"],
+    },
+    monk: {
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Dexterity", "Wisdom"],
+        skillProficiencies: ["Acrobatics", "Animal Handling", "Athletics", "History", "Insight", "Intimidation", "Perception", "Survival"],
+        weaponProficiencies: ["Simple Weapons"],
+        ArmorTraits: ["Light Armor"],
+    },
+    paladin: {
+        hitDice: "1d10",
+        savingThrowProficiencies: ["Strength", "Charisma"],
+        skillProficiencies: ["Athletics", "Insight", "Intimidation", "Medicine", "Persuasion", ],
+        weaponProficiencies: ["Simple Weapons", "Martial Weapons"],
+        ArmorTraits: ["Light Armor", "Medium Armor"],
+    },
+    ranger: {
+        hitDice: "1d10",
+        savingThrowProficiencies: ["Strength", "Dexterity"],
+        skillProficiencies: ["Animal Handling", "Athletics", "Insight", "Investigation", "Nature", "Perception", "Stealth", "Survival"],
+        weaponProficiencies: ["Simple Weapons", "Martial Weapons"],
+        ArmorTraits: ["Light Armor", "Medium Armor", "Shields"],
+    },
+    rogue: {
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Dexterity", "Intelligence"],
+        skillProficiencies: ["Acrobatics", "Athletics", "Deception", "Insight", "Intimidation", "Investigation", "Perception", "Performance", "Persuasion", "Sleight of Hand", "Stealth"],
+        weaponProficiencies: ["Simple Weapons", "Hand Crossbows", "Longswords", "Rapiers", "Shortswords"],
+        ArmorTraits: ["Light Armor"],
+    },
+    sorcerer: {
+        hitDice: "1d6",
+        savingThrowProficiencies: ["Constitution", "Charisma"],
+        skillProficiencies: ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"],
+        weaponProficiencies: ["Daggers", "Darts", "Slings", "Quarterstaffs", "Wands"],
+        ArmorTraits: ["Light Armor"],
+    },
+    warlock: {
+        hitDice: "1d8",
+        savingThrowProficiencies: ["Wisdom", "Charisma"],
+        skillProficiencies: ["Arcana", "Diplomacy", "Intimidation", "Investigation", "Nature", "Religion"],
+        weaponProficiencies: ["Simple Weapons"],
+        ArmorTraits: ["Light Armor"],
+    },
+    wizard: {
+        hitDice: "1d6",
+        savingThrowProficiencies: ["Intelligence", "Wisdom"],
+        skillProficiencies: ["Arcana", "History", "Insight", "Investigation", "Medicine", "Religion"],
+        weaponProficiencies: ["Daggers", "Darts", "Slings", "Quarterstaffs", "Wands"],
+        ArmorTraits: ["Light Armor"],
+    }
+}
+
+// Species available for randomly generated characters.
 const species = ["Aasimar", "Dragonborn", "Dwarf", "Elf", "Gnome", "Goliath", "Halfling", "Human", "Orc", "Tiefling"];
 
+// Backgrounds available for randomly generated characters.
 const backgrounds = ["Acolyte", "Artisan", "Charlatan", "Criminal", "Entertainer", "Farmer", "Guard", "Guide", "Hermit", "Merchant", "Noble", "Sage", "Sailor", "Scribe", "Soldier", "Wayfarer"];
 
+// Subspecies options keyed by the lowercase name of the species that has them.
 const subSpecies = {
     dragonborn: ["Black", "Blue", "Brass", "Bronze", "Copper", "Gold", "Green", "Red", "Silver", "White"],
     elf: ["High", "Wood", "Drow"],
@@ -18,6 +176,7 @@ const subSpecies = {
     tiefling: ["Abyssal", "Chthonic", "Infernal"],
 };
 
+// Maximum age values used to randomly generate each species' age.
 const lifespan = {
     aasimar: 160,
     dragonborn: 80,
@@ -31,6 +190,7 @@ const lifespan = {
     tiefling: 100
 };
 
+// Minimum height values, in feet, used to generate each species' height.
 const heightMinimum = {
     aasimar: 4,
     dragonborn: 5,
@@ -44,6 +204,7 @@ const heightMinimum = {
     tiefling: 3
 };
 
+// Height ranges, in feet, added to each species' minimum height.
 const heightRange = {
     aasimar: 3,
     dragonborn: 2,
@@ -57,6 +218,7 @@ const heightRange = {
     tiefling: 4
 };
 
+// Primary ability score associated with each class.
 const primaryStats = {
     barbarian: "Strength",
     bard: "Charisma",
@@ -88,6 +250,7 @@ const feats = {
     "Tough": "Your hit point maximum increases by 2 per level."
 };
 
+// Cantrips available to each spellcasting class.
 const cantrips = {
     bard: ["Blade Ward", 
            "Dancing Lights", "Friends", "Mage Hand", "Mending", "Message", 
@@ -105,6 +268,7 @@ const cantrips = {
                "Prestidigitation", "Ray of Frost", "Shocking Grasp", "Sorcerous Burst", "Thunderclap", "Toll the Dead", "True Strike"]
 }
 
+// Level-one spells available to each spellcasting class.
 const lvl1Spells = {
     bard: ["Animal Friendship", "Bane", "Charm Person", "Color Spray", "Command", "Comprehend Languages", "Cure Wounds", "Detect Magic", 
            "Disguise Self", "Dissonant Whispers", "Faerie Fire", "Feather Fall", "Healing Word", "Heroism", "Identify", "Illusory Script", 
@@ -131,6 +295,7 @@ const lvl1Spells = {
 
 // ---- stuff from the handbook index doc ----
 
+// Ability score names used throughout character generation.
 const abilities = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
 
 // fighter, monk, paladin and ranger have 2 primary stats in the handbook
@@ -142,17 +307,21 @@ const secondaryPrimaryStats = {
 };
 
 // 4d6 drop lowest, 6 times
+// Preset ability scores available when using the standard array method.
 const standardArray = [15, 14, 13, 12, 10, 8];
+// Dice parameters for rolling six ability scores using 4d6 and keeping the highest three.
 const randomGeneration = { dice: 4, sides: 6, keepHighest: 3, times: 6 };
 
 // background bonus is either +2/+1 or +1 to all three
 const backgroundBonusOptions = [[2, 1], [1, 1, 1]];
 
+// Ability score values mapped to their corresponding modifiers.
 const abilityModifiers = {
     3: -4, 4: -3, 5: -3, 6: -2, 7: -2, 8: -1, 9: -1, 10: 0, 11: 0,
     12: 1, 13: 1, 14: 2, 15: 2, 16: 3, 17: 3, 18: 4, 19: 4, 20: 5
 };
 
+// Traits granted by each species, keyed by lowercase species name.
 const speciesTraits = {
     aasimar: ["Celestial Resistance", "Darkvision", "Healing Hands", "Light Bearer", "Celestial Revelation"],
     dragonborn: ["Draconic Ancestry", "Breath Weapon", "Damage Resistance", "Darkvision", "Draconic Flight"],
@@ -180,6 +349,7 @@ const speciesSize = {
     tiefling: ["Medium", "Small"]
 };
 
+// Ability scores each background allows the character to increase.
 const backgroundAbilityScores = {
     acolyte: ["Intelligence", "Wisdom", "Charisma"],
     artisan: ["Strength", "Dexterity", "Intelligence"],
@@ -199,6 +369,7 @@ const backgroundAbilityScores = {
     wayfarer: ["Dexterity", "Wisdom", "Charisma"]
 };
 
+// Feat granted by each background, keyed by lowercase background name.
 const backgroundFeats = {
     acolyte: "Magic Initiate (Cleric)",
     artisan: "Crafter",
@@ -238,6 +409,7 @@ const backgroundTools = {
     wayfarer: "Thieves' Tools"
 };
 
+// Lists of concrete items available when a background grants a choice category.
 const itemChoices = {
     "Artisan's Tools": ["Alchemist's Supplies", "Brewer's Supplies", "Calligrapher's Supplies",
         "Carpenter's Tools", "Cartographer's Tools", "Cobbler's Tools", "Cook's Utensils",
@@ -249,29 +421,48 @@ const itemChoices = {
         "Pan Flute", "Shawm", "Viol"]
 };
 
-// starting items = option A from the handbook, gold is in GP
-const classStartingItems = {
-    barbarian: ["Greataxe", "4 Handaxes", "Explorer's Pack"],
-    bard: ["Leather Armor", "2 Daggers", "Musical Instrument", "Entertainer's Pack"],
-    cleric: ["Chain Shirt", "Shield", "Mace", "Holy Symbol", "Priest's Pack"],
-    druid: ["Leather Armor", "Shield", "Sickle", "Druidic Focus (Quarterstaff)", "Explorer's Pack", "Herbalism Kit"],
-    fighter: ["Chain Mail", "Greatsword", "Flail", "8 Javelins", "Dungeoneer's Pack"],
-    monk: ["Spear", "5 Daggers", "Artisan's Tools or Musical Instrument", "Explorer's Pack"],
-    paladin: ["Chain Mail", "Shield", "Longsword", "6 Javelins", "Holy Symbol", "Priest's Pack"],
-    ranger: ["Studded Leather Armor", "Scimitar", "Shortsword", "Longbow", "20 Arrows", "Quiver",
-             "Druidic Focus (Sprig of Mistletoe)", "Explorer's Pack"],
-    rogue: ["Leather Armor", "2 Daggers", "Shortsword", "Shortbow", "20 Arrows", "Quiver",
-            "Thieves' Tools", "Burglar's Pack"],
-    sorcerer: ["Spear", "2 Daggers", "Arcane Focus (Crystal)", "Dungeoneer's Pack"],
-    warlock: ["Leather Armor", "Sickle", "2 Daggers", "Arcane Focus (Orb)", "Book (Occult Lore)", "Scholar's Pack"],
-    wizard: ["2 Daggers", "Arcane Focus (Quarterstaff)", "Robe", "Spellbook", "Scholar's Pack"]
+// Class starting equipment and gold for equipment option A.
+const classStartingEquipmentA = {
+    barbarian: { equipment: ["Greataxe", "4 Handaxes", "Explorer's Pack"], gold: 15 },
+    bard: { equipment: ["Leather Armor", "2 Daggers", "Musical Instrument", "Entertainer's Pack"], gold: 19 },
+    cleric: { equipment: ["Chain Shirt", "Shield", "Mace", "Holy Symbol", "Priest's Pack"], gold: 7 },
+    druid: { equipment: ["Leather Armor", "Shield", "Sickle", "Druidic Focus (Quarterstaff)", "Explorer's Pack", "Herbalism Kit"], gold: 9 },
+    fighter: { equipment: ["Chain Mail", "Greatsword", "Flail", "8 Javelins", "Dungeoneer's Pack"], gold: 4 },
+    monk: { equipment: ["Spear", "5 Daggers", "Artisan's Tools or Musical Instrument", "Explorer's Pack"], gold: 11 },
+    paladin: { equipment: ["Chain Mail", "Shield", "Longsword", "6 Javelins", "Holy Symbol", "Priest's Pack"], gold: 9 },
+    ranger: { equipment: ["Studded Leather Armor", "Scimitar", "Shortsword", "Longbow", "20 Arrows", "Quiver", "Druidic Focus (Sprig of Mistletoe)", "Explorer's Pack"], gold: 7 },
+    rogue: { equipment: ["Leather Armor", "2 Daggers", "Shortsword", "Shortbow", "20 Arrows", "Quiver", "Thieves' Tools", "Burglar's Pack"], gold: 8 },
+    sorcerer: { equipment: ["Spear", "2 Daggers", "Arcane Focus (Crystal)", "Dungeoneer's Pack"], gold: 28 },
+    warlock: { equipment: ["Leather Armor", "Sickle", "2 Daggers", "Arcane Focus (Orb)", "Book (Occult Lore)", "Scholar's Pack"], gold: 15 },
+    wizard: { equipment: ["2 Daggers", "Arcane Focus (Quarterstaff)", "Robe", "Spellbook", "Scholar's Pack"], gold: 5 }
 };
 
-const classStartingGold = {
-    barbarian: 15, bard: 19, cleric: 7, druid: 9, fighter: 4, monk: 11,
-    paladin: 9, ranger: 7, rogue: 8, sorcerer: 28, warlock: 15, wizard: 5
-};
+// Class starting equipment and gold for equipment option B.
+const classStartingEquipmentB = {
+    barbarian: { equipment: [], gold: 75 },
+    bard: { equipment: [], gold: 90 },
+    cleric: { equipment: [], gold: 110 },
+    druid: { equipment: [], gold: 50 },
+    fighter: { equipment: ["Studded Leather Armor", "Longsword", "2 Handaxes", "Dungeoneer's Pack"], gold: 11 },
+    monk: { equipment: [], gold: 50 },
+    paladin: { equipment: [], gold: 150 },
+    ranger: { equipment: [], gold: 150 },
+    rogue: { equipment: [], gold: 100 },
+    sorcerer: { equipment: [], gold: 50 },
+    warlock: { equipment: [], gold: 100 },
+    wizard: { equipment: [], gold: 55 }
+}
 
+// Class starting equipment and gold for equipment option C.
+const classStartingEquipmentC = {
+    fighter: { equipment: [], gold: 155 }
+}
+
+
+
+
+
+// Items granted by each background, keyed by lowercase background name.
 const backgroundStartingItems = {
     acolyte: ["Calligrapher's Supplies", "Book (Prayers)", "Holy Symbol", "Parchment (10 sheets)", "Robe"],
     artisan: ["Artisan's Tools", "2 Pouches", "Traveler's Clothes"],
@@ -291,6 +482,7 @@ const backgroundStartingItems = {
     wayfarer: ["2 Daggers", "Thieves' Tools", "Gaming Set", "Bedroll", "2 Pouches", "Traveler's Clothes"]
 };
 
+// Starting gold granted by each background.
 const backgroundStartingGold = {
     acolyte: 8, artisan: 32, charlatan: 15, criminal: 16, entertainer: 11, farmer: 30,
     guard: 12, guide: 3, hermit: 16, merchant: 22, noble: 29, sage: 8,
@@ -303,5 +495,6 @@ export {
     primaryStats, secondaryPrimaryStats, feats, cantrips, lvl1Spells,
     abilities, standardArray, randomGeneration, backgroundBonusOptions, abilityModifiers,
     speciesTraits, speciesSize, backgroundAbilityScores, backgroundFeats, backgroundTools,
-    itemChoices, classStartingItems, classStartingGold, backgroundStartingItems, backgroundStartingGold
+    itemChoices, backgroundStartingItems, backgroundStartingGold,
+    lel1ClassFeatures, coreClassTraits, classStartingEquipmentA, classStartingEquipmentB, classStartingEquipmentC
 };
