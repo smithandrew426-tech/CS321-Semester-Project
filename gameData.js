@@ -252,8 +252,7 @@ const feats = {
 
 // Cantrips available to each spellcasting class.
 const cantrips = {
-    bard: ["Blade Ward", 
-           "Dancing Lights", "Friends", "Mage Hand", "Mending", "Message", 
+    bard: ["Blade Ward", "Dancing Lights", "Friends", "Mage Hand", "Mending", "Message", 
            "Minor Illusion", "Prestidigitation", "Starry Wisp", "Thunderclap", "True Strike", "Vicious Mockery"],
     cleric: ["Guidance", "Light", "Mending", "Resistance", "Sacred Flame", "Spare the Dying", "Thaumaturgy", 
              "Toll the Dead", "Word of Radiance"],
