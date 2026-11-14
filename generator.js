@@ -136,13 +136,17 @@ function generateHeight(modelSpecies) {
 }
 
 function generateAbilityScores(modelClass, modelAbilityScores) {
-
-    const scores = new Array(6);
+    
+    const stats = ["strength", "dexterity", "constitution", "intelligence", "wisdom", "charisma"];
+    const scores = new Array(stats.length);
+    
     for(let i = 0; i < scores.length; i++) {
         scores[i] = abilityScoreHelper();
     }
+    
     let maxScore = -1;
     let maxIndex = -1;
+    
     for(let i = 0; i < scores.length; i++) {
         if(scores[i] > maxScore) {
             maxScore = scores[i];
@@ -151,18 +155,21 @@ function generateAbilityScores(modelClass, modelAbilityScores) {
     }
     
     let primaryStat = primaryStats[modelClass.toLowerCase()].toLowerCase();
-    modelAbilityScores[primaryStat] = maxScore;
+    let primaryStatIndex = -1;
+    for(let i = 0; i < stats.length; i++) {
+            modelAbilityScores[stats[i]] = scores[i];
+            if(stats[i] == primaryStat) {
+                primaryStatIndex = i;
+            }
+    } 
 
-    let i = 0;
-    while(checkAbilityScoresInitilized(modelAbilityScores) == false && i < scores.length) {
-        let randomStat = chooseRandomStatHelper();
-        if(modelAbilityScores[randomStat] == 0 && i != maxIndex) {
-            modelAbilityScores[randomStat] = scores[i];
-            
+    for(let i = 0; i < stats.length; i++) {
+        if(stats[i] != primaryStat && i == maxIndex) {
+            modelAbilityScores[stats[i]] = scores[primaryStatIndex];
         }
-        i++;
-        
     }
+    
+    modelAbilityScores[primaryStat] = maxScore;
 
     return modelAbilityScores;
 }
